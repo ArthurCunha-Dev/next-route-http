@@ -4,9 +4,11 @@ import { data } from './data'
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams
     const query = searchParams.get('query')
-
-    const filteredNames = query ? data.filter(name => name.name.includes(query)) : data
-
+console.log(query)
+    const filteredNames = query 
+        ? data.filter(name => name.name.toLowerCase().includes(query.toLowerCase())) 
+        : data
+    console.log(filteredNames)
     return Response.json(filteredNames)
 }
 
